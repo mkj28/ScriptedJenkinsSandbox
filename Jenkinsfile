@@ -37,8 +37,8 @@ node {
     }
 
     stage('Select environment') {
-        phone = input([message: 'Select environment', parameters: [[$class: 'ChoiceParameterDefinition', choices: "staging\ndemo", description: 'Environment', name: 'environment']]])
-            echo ("Environment: " + environment)
+        environment = input([message: 'Select environment', parameters: [[$class: 'ChoiceParameterDefinition', choices: "staging\ndemo", description: 'Environment', name: 'environment']]])
+        echo ("Environment: " + environment)
     }
 
     
