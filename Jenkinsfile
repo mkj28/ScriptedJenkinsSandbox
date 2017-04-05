@@ -1,9 +1,7 @@
 node {
     datasets = parseText(new File('dataset.json').text)
 
-    def parseText(txt){
-        return new groovy.json.JsonSlurper().parseText(txt)
-    }
+    
 
     println datasets
     echo datasets
@@ -24,3 +22,7 @@ node {
         echo 'deploying'
     }
 }
+
+def parseText(txt){
+        return new groovy.json.JsonSlurper().parseText(txt)
+    }
