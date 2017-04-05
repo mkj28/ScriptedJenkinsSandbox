@@ -7,7 +7,7 @@ node {
     //datasets = parseText(new File('./dataset.json').text)
     def datasets = jsonParse(readFile("dataset.json"))
 
-    def datasetArray =  datasets["datasets"]
+    def datasetArray =  datasets["datasets"].keySet()
     println datasetArray
     def datasetArrayString = datasetArray.join("\n")
     println datasetArrayString
