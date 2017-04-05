@@ -7,11 +7,10 @@ node {
     //datasets = parseText(new File('./dataset.json').text)
     def datasets = jsonParse(readFile("dataset.json"))
 
-    echo datasets
-    echo datasets['datasets']
+    def datasetArray =  datasets["datasets"]
 
     stage('Select Dataset') {
-        def dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: 'retail\nhotel\ncommunication\nfinancial\ntravel', description: 'Select Dataset', name: 'dataset']]])
+        def dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: datasetArray, description: 'Select Dataset', name: 'dataset']]])
         echo ("Dataset: "+dataset)
     }
     stage('Build') {
