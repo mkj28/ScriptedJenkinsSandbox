@@ -3,11 +3,19 @@ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKe
 node {
     stage('Checkout') {
         git url: 'https://github.com/mkj28/ScriptedJenkinsSandbox.git'
+        def repoUrl = 'https://github.com/mkj28/ScriptedJenkinsSandbox.git'
+        def repoTmpTags = 'tempTags.txt'
         checkout scm
+        sh("git ls-remote --quiet --tags --heads ${repoUrl} | awk '{print \$2}' | grep -vi '{}' | cut -d/ -f1,2 --complement > ${repoTmpTags}")
     }
 
     stage('User input') {
         input message: 'Select tag', parameters: [[$class: 'GitParameterDefinition', branch: '', branchFilter: '.*', defaultValue: '', description: 'Git Tag Description', name: 'gitTag', quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG']]
+    }
+    stage('From file') {
+        def listofRepo1TagsBranches = readFile(repoTmpTags).trim()
+        def repo1TagBranch = input([message: 'Select a Git branch / tag', parameters: [[$class: 'ChoiceParameterDefinition', choices: listofRepo1TagsBranches, description: '', name: 'fileTag']]])
+        echo ("Target: "+repo1TagBranch['fileTag'])
     }
     stage('Another user input') {
         def userInput = input(
