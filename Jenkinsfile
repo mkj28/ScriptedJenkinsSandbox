@@ -15,7 +15,7 @@ node {
     }
     stage('Yet another user input') {
         Map feedback = input(submitterParameter: 'submitter', message: "tell me something", parameters: [
-            [$class: 'TextParameterDefinition', name: 'text', description: "enter something"]
+            [$class: 'GitParameterDefinition', name: 'text', description: "enter something"]
             ])
         echo "Text: ${feedback.text}"
         echo "Submitter: ${feedback.submitter}"
