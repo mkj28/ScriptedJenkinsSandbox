@@ -3,12 +3,8 @@ import groovy.json.JsonSlurperClassic
 node {
     checkout scm
 
-
-    //datasets = parseText(new File('./dataset.json').text)
     def datasets = jsonParse(readFile("dataset.json"))
 
-    //def datasetArray =  datasets["datasets"].keySet()
-    //println datasetArray
     def datasetArrayString = getKeySetAsString(datasets["datasets"])
     println datasetArrayString
     def dataset
@@ -51,10 +47,6 @@ node {
         echo 'Resetting: ' + environment + " for dataset: " + dataset + " and company: " + company
     }
 }
-
-def parseText(txt){
-        return new groovy.json.JsonSlurper().parseText(txt)
-    }
 
 @NonCPS
 def jsonParse(def json) {
