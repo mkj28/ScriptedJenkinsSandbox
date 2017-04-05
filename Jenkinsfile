@@ -2,7 +2,7 @@ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKe
 
 node {
     def repoTmpTags = 'tempTags.txt'
-    
+
     stage('Checkout') {
         git url: 'https://github.com/mkj28/ScriptedJenkinsSandbox.git'
         def repoUrl = 'https://github.com/mkj28/ScriptedJenkinsSandbox.git'
@@ -17,7 +17,7 @@ node {
     stage('From file') {
         def listofRepo1TagsBranches = readFile(repoTmpTags).trim()
         def repo1TagBranch = input([message: 'Select a Git branch / tag', parameters: [[$class: 'ChoiceParameterDefinition', choices: listofRepo1TagsBranches, description: '', name: 'fileTag']]])
-        echo ("Target: "+repo1TagBranch['fileTag'])
+        echo ("Target: "+repo1TagBranch)
     }
     stage('Another user input') {
         def userInput = input(
