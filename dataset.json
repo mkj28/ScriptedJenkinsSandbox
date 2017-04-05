@@ -1,44 +1,29 @@
 {
-  "datasets": [
-    {
-      "dataset": "hotel",
-      "company" : [
+  "datasets": {
+    "hotel": [
         "villas",
         "hyatt",
         "fourSeasons"
-        ]
-    },
-    {
-      "dataset": "retail",
-      "company" : [
+        ],
+    "retail": [
         "genericRetail",
         "toryBurch",
         "honestCo",
         "sony",
         "publix",
         "safeway"
-        ]
-    },
-    {
-      "dataset": "communication",
-      "company" : [
+        ],
+    "communication": [
         "rogers"
-        ]
-    },
-    {
-      "dataset": "financial",
-      "company" : [
+        ],
+    "financial": [
         "genericFinancial",
         "ally",
         "omaha"
-        ]
-    },
-    {
-      "dataset": "travel",
-      "company" : [
+        ],
+    "travel": [
         "genericTravel",
         "jetBlue"
         ]
-    }
-    ]
+  }
 }

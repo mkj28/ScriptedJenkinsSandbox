@@ -7,7 +7,7 @@ node {
     //datasets = parseText(new File('./dataset.json').text)
     def datasets = jsonParse(readFile("dataset.json"))
 
-    def datasetArray =  datasets["datasets"]["dataset"]
+    def datasetArray =  datasets["datasets"]
     println datasetArray
     def datasetArrayString = datasetArray.join("\n")
     println datasetArrayString
@@ -19,7 +19,7 @@ node {
     }
 
     stage('Select company') {
-        def companies = datasets["datasets"].find{it."dataset"==dataset}."company"
+        def companies = datasets["datasets"][dataset]
         def companyString = companies.join("\n")
     }
 
