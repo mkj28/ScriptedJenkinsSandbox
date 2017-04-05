@@ -2,6 +2,7 @@ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKe
 
 node {
     stage('Checkout') {
+        git url: 'https://github.com/mkj28/ScriptedJenkinsSandbox.git'
         checkout scm
     }
 
