@@ -37,14 +37,12 @@ node {
         echo ("Environment: " + environment)
     }
 
-    
+    stage('Reset') {
+        echo 'Resetting: ' + environment + " for dataset: " + dataset + " and company: " + company
+    }
 
     stage('Testing') {
         input message: "Tests passed?"
-    }
-
-    stage('Reset') {
-        echo 'Resetting: ' + environment + " for dataset: " + dataset + " and company: " + company
     }
 }
 
