@@ -13,6 +13,8 @@ node {
     println datasetArrayString
     def dataset
     def company
+    def phone
+    def environment
 
     stage('Select Dataset') {
         dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: datasetArrayString, description: 'Select Dataset', name: 'dataset']]])
@@ -29,20 +31,24 @@ node {
     if( dataset == "travel" ) {
         stage('Phone number') {
             phone = input([message: 'Phone Number', parameters: [[$class: 'ChoiceParameterDefinition', choices: "1234\n5678", description: 'Phone Number', name: 'phoneNumber']]])
+            echo ("Phone: " + phone)
         }
 
     }
 
-    stage('Build') {
-        echo 'building'
+    stage('Select environment') {
+        phone = input([message: 'Select environment', parameters: [[$class: 'ChoiceParameterDefinition', choices: "staging\ndemo", description: 'Environment', name: 'environment']]])
+            echo ("Environment: " + environment)
     }
 
-    stage('Test') {
-        echo 'testing'
+    
+
+    stage('Testing') {
+        input message: "Tests passed?"
     }
 
-    stage('Deploy') {
-        echo 'deploying'
+    stage('Reset') {
+        echo 'Resetting: ' + environment + " for dataset: " + dataset + " and company: " + company
     }
 }
 
