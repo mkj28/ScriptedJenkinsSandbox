@@ -9,7 +9,7 @@ node {
 
     //def datasetArray =  datasets["datasets"].keySet()
     //println datasetArray
-    def datasetArrayString = getKeySetAsString[datasets["datasets"]]
+    def datasetArrayString = getKeySetAsString(datasets["datasets"])
     println datasetArrayString
     def dataset
 
