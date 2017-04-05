@@ -1,11 +1,13 @@
+import groovy.json.JsonSlurperClassic
+
 node {
     checkout scm
 
 
     //datasets = parseText(new File('./dataset.json').text)
-    def datasets = readFile "dataset.json"
+    def datasets = jsonParse(readFile("dataset.json"))
 
-    echo datasets.datasets
+    echo datasets['datasets']'
 
     stage('Select Dataset') {
         def dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: 'retail\nhotel\ncommunication\nfinancial\ntravel', description: 'Select Dataset', name: 'dataset']]])
@@ -27,3 +29,8 @@ node {
 def parseText(txt){
         return new groovy.json.JsonSlurper().parseText(txt)
     }
+
+@NonCPS
+def jsonParse(def json) {
+    new groovy.json.JsonSlurperClassic().parseText(json)
+}
