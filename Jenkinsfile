@@ -11,11 +11,18 @@ node {
     println datasetArray
     def datasetArrayString = datasetArray.join("\n")
     println datasetArrayString
+    def dataset
 
     stage('Select Dataset') {
-        def dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: datasetArrayString, description: 'Select Dataset', name: 'dataset']]])
+        dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: datasetArrayString, description: 'Select Dataset', name: 'dataset']]])
         echo ("Dataset: "+dataset)
     }
+
+    stage('Select company') {
+        def companies = datasets["datasets"].find{ it."dataset"==dataset}."company")
+        def companyString = companies.join("\n")
+    }
+
     stage('Build') {
         echo 'building'
     }
