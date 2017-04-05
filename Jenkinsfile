@@ -19,7 +19,7 @@ node {
     }
 
     stage('Select company') {
-        def companies = datasets["datasets"].find{ it."dataset"==dataset}."company")
+        def companies = datasets["datasets"].find{it."dataset"==dataset}."company"
         def companyString = companies.join("\n")
     }
 
