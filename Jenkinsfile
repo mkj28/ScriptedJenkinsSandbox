@@ -13,7 +13,7 @@ node {
     def environment
 
     stage('Select Dataset') {
-        timeout(time: 1, unit: 'MINUTES') {
+        timeout(time: 1, unit: 'HOURS') {
             dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: datasetArrayString, description: 'Select Dataset', name: 'dataset']]])
         }
         echo ("Dataset: " + dataset)
