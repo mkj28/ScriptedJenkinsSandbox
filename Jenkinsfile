@@ -26,6 +26,13 @@ node {
         echo ("Company: " + company)
     }
 
+    if( dataset == "travel" ) {
+        stage('Phone number') {
+            phone = input([message: 'Phone Number', parameters: [[$class: 'ChoiceParameterDefinition', choices: "1234\n5678", description: 'Phone Number', name: 'phoneNumber']]])
+        }
+
+    }
+
     stage('Build') {
         echo 'building'
     }
