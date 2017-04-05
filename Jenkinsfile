@@ -12,15 +12,18 @@ node {
     def datasetArrayString = getKeySetAsString(datasets["datasets"])
     println datasetArrayString
     def dataset
+    def company
 
     stage('Select Dataset') {
         dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: datasetArrayString, description: 'Select Dataset', name: 'dataset']]])
-        echo ("Dataset: "+dataset)
+        echo ("Dataset: " + dataset)
     }
 
     stage('Select company') {
         def companies = datasets["datasets"][dataset]
         def companyString = companies.join("\n")
+        company = input([message: 'Select Company', parameters: [[$class: 'ChoiceParameterDefinition', choices: companyString, description: 'Select Company', name: 'company']]])
+        echo ("Company: " + company)
     }
 
     stage('Build') {
