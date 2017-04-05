@@ -1,5 +1,6 @@
 node {
-    datasets = parseText(new File('dataset.json').text)
+
+    datasets = parseText(new File('./dataset.json').text)
 
     
 
