@@ -7,7 +7,10 @@ node {
     //datasets = parseText(new File('./dataset.json').text)
     def datasets = jsonParse(readFile("dataset.json"))
 
-    def datasetArray =  datasets["datasets"]
+    def datasetArray =  datasets["datasets"]["dataset"]
+    println datasetArray
+    def datasetArrayString = datasetArray.join("\n")
+    println datasetArrayString
 
     stage('Select Dataset') {
         def dataset = input([message: 'Select Dataset', parameters: [[$class: 'ChoiceParameterDefinition', choices: datasetArray, description: 'Select Dataset', name: 'dataset']]])
