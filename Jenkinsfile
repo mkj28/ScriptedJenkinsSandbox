@@ -7,9 +7,9 @@ node {
     //datasets = parseText(new File('./dataset.json').text)
     def datasets = jsonParse(readFile("dataset.json"))
 
-    def datasetArray =  datasets["datasets"].keySet()
-    println datasetArray
-    def datasetArrayString = datasetArray.join("\n")
+    //def datasetArray =  datasets["datasets"].keySet()
+    //println datasetArray
+    def datasetArrayString = getKeySetAsString[datasets["datasets"]]
     println datasetArrayString
     def dataset
 
@@ -43,4 +43,10 @@ def parseText(txt){
 @NonCPS
 def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
+}
+
+@NonCPS
+def getKeySetAsString(def json) {
+    def keySet = json.keySet()
+    return keySet.join("\n")
 }
