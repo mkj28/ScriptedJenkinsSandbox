@@ -15,7 +15,7 @@ node {
     }
     stage('Yet another user input') {
         Map feedback = input(submitterParameter: 'submitter', message: "tell me something", parameters: [
-            [$class: 'GitParameterDefinition', name: 'text', description: "enter something"]
+            [$class: 'GitParameterDefinition', branch: '', branchFilter: '.*', defaultValue: '', description: 'Git Tag Description', name: 'text', quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG']
             ])
         echo "Text: ${feedback.text}"
         echo "Submitter: ${feedback.submitter}"
