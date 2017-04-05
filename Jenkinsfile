@@ -1,6 +1,8 @@
 node {
     checkout scm
-    
+    sh "pwd"
+    sh "ls"
+    sh "cat dataset.json"
     datasets = parseText(new File('./dataset.json').text)
 
     
