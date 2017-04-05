@@ -1,5 +1,6 @@
 node {
-
+    checkout scm
+    
     datasets = parseText(new File('./dataset.json').text)
 
     
