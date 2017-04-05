@@ -1,9 +1,9 @@
 node {
     checkout scm
-    sh "pwd"
-    sh "ls"
-    sh "cat dataset.json"
-    datasets = parseText(new File('./dataset.json').text)
+
+    sh "jq datasets.json"
+    //datasets = parseText(new File('./dataset.json').text)
+    def datasets = readFile "dataset.json"
 
     
 
